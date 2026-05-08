@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Copilot Delete Helper</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Privacy-first</p>
+          <h1>Copilot Delete Helper</h1>
+        </div>
+        <span class="badge" id="connectionBadge">Ready</span>
+      </header>
+
+      <section class="panel stats-panel" aria-label="Current selection status">
+        <div class="stat">
+          <span class="stat-number" id="loadedCount">0</span>
+          <span class="stat-label">Loaded</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" id="selectedCount">0</span>
+          <span class="stat-label">Selected</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" id="failedCount">0</span>
+          <span class="stat-label">Failed</span>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-title">
+          <h2>1. Prepare</h2>
+          <p>Load visible chats, then add checkboxes.</p>
+        </div>
+        <div class="button-grid two">
+          <button id="loadMore" class="secondary">Load More</button>
+          <button id="add" class="primary">Add Checkboxes</button>
+        </div>
+        <div class="button-grid two">
+          <button id="remove" class="ghost">Remove</button>
+          <button id="refresh" class="ghost">Refresh Count</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-title">
+          <h2>2. Select</h2>
+          <p>Use shift-click on checkboxes for ranges.</p>
+        </div>
+        <div class="button-grid two">
+          <button id="selectAll" class="secondary">Select Visible</button>
+          <button id="deselectAll" class="ghost">Deselect All</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-title row">
+          <div>
+            <h2>3. Delete</h2>
+            <p>Keep the Copilot tab focused while it runs.</p>
+          </div>
+          <label class="speed-wrap" for="speedMode">
+            <span>Mode</span>
+            <select id="speedMode">
+              <option value="balanced" selected>Balanced</option>
+              <option value="safe">Safe</option>
+              <option value="fast">Fast</option>
+            </select>
+          </label>
+        </div>
+
+        <button id="deleteSelected" class="danger">Delete Selected</button>
+        <div class="button-grid two action-row">
+          <button id="retryFailed" class="secondary">Retry Failed</button>
+          <button id="cancelJob" class="ghost">Stop</button>
+        </div>
+      </section>
+
+      <section class="status-card" aria-live="polite">
+        <div class="progress-shell">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <p id="status">Open Copilot, then click Add Checkboxes.</p>
+      </section>
+
+      <footer>
+        No telemetry. No servers. Uses Copilot's visible UI only.
+      </footer>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
